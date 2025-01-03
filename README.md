@@ -7,7 +7,7 @@ This project was created by Thomas Trevaskis on 3rd January, 2025
 The project title is pdsnd_github
 
 ### Description
-This project uses Python to analyze U.S. bikeshare data. It provides an interactive interface that allows users to select and filter datasets from three cities—Chicago, New York City, and Washington—for detailed analysis.
+This Python-based project examines bikeshare data from three major U.S. cities: Chicago, New York City, and Washington. It features an interactive tool that enables users to select a city's dataset, apply filters, and gain insights through detailed analysis.
 
 ### Files used
 bikeshare.py chicago.csv new_york_city.csv washington.csv
