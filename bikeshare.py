@@ -141,6 +141,13 @@ def main():
         time_stats(df)
         # Additional statistics calls like station_stats(df), trip_duration_stats(df), user_stats(df) go here.
 
+        # Export option
+        export = input("\nWould you like to save the filtered data to a CSV file? Enter yes or no.\n").strip().lower()
+        if export == 'yes':
+            file_name = f"{city}_filtered_data.csv"
+            df.to_csv(file_name, index=False)
+            print(f"\nFiltered data has been successfully saved to {file_name}.\n")
+
         restart = input('\nWould you like to restart? Enter yes or no.\n').strip().lower()
         if restart != 'yes':
             break
