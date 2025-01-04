@@ -2,9 +2,11 @@ import time
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = { 
+    'chicago': 'chicago.csv',
+    'new york city': 'new_york_city.csv',
+    'washington': 'washington.csv' 
+}
 
 def get_filters():
     """
@@ -19,11 +21,11 @@ def get_filters():
 
     # Get user input for city
     while True:
-        city = input("Would you like to see data for Chicago, New York, or Washington?\n").strip().lower()
+        city = input("Would you like to see data for Chicago, New York City, or Washington?\n").strip().lower()
         if city in CITY_DATA:
             break
         else:
-            print("Invalid input. Please choose from Chicago, New York, or Washington.")
+            print("Invalid input. Please choose from Chicago, New York City, or Washington.")
 
     # Get user input for filter type
     while True:
@@ -54,7 +56,7 @@ def get_filters():
             else:
                 print("Invalid input. Please choose a valid day.")
 
-    print('-'*40)
+    print('-' * 40)
     return city, month, day
 
 def load_data(city, month, day):
@@ -125,7 +127,7 @@ def time_stats(df):
     print(f"Most Common Start Hour: {common_hour}")
 
     print(f"\nThis took {time.time() - start_time:.2f} seconds.")
-    print('-'*40)
+    print('-' * 40)
 
 # Similar statistical functions go here for station_stats, trip_duration_stats, and user_stats.
 
