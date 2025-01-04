@@ -92,6 +92,26 @@ def load_data(city, month, day):
 
     return df
 
+def display_filtered_data_summary(df):
+    """
+    Displays a summary of the filtered dataset, including the number of records and the time range.
+
+    Args:
+        df - Pandas DataFrame containing filtered city data
+    """
+    print('\nFiltered Data Summary:')
+    print('-' * 40)
+    
+    # Number of records
+    print(f"Number of Records: {df.shape[0]}")
+    
+    # Time range
+    start_time = df['Start Time'].min()
+    end_time = df['Start Time'].max()
+    print(f"Time Range: {start_time.strftime('%Y-%m-%d %H:%M:%S')} to {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+
+    print('-' * 40)
+
 def display_raw_data(df):
     """
     Prompts the user to display raw data 5 rows at a time.
@@ -136,17 +156,11 @@ def main():
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
+        display_filtered_data_summary(df)  # Call the new summary function
         display_raw_data(df)
 
         time_stats(df)
         # Additional statistics calls like station_stats(df), trip_duration_stats(df), user_stats(df) go here.
-
-        # Export option
-        export = input("\nWould you like to save the filtered data to a CSV file? Enter yes or no.\n").strip().lower()
-        if export == 'yes':
-            file_name = f"{city}_filtered_data.csv"
-            df.to_csv(file_name, index=False)
-            print(f"\nFiltered data has been successfully saved to {file_name}.\n")
 
         restart = input('\nWould you like to restart? Enter yes or no.\n').strip().lower()
         if restart != 'yes':
