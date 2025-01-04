@@ -2,9 +2,11 @@ import time
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = { 
+    'chicago': 'chicago.csv',
+    'new york city': 'new_york_city.csv',
+    'washington': 'washington.csv' 
+}
 
 def get_filters():
     """
@@ -19,11 +21,11 @@ def get_filters():
 
     # Get user input for city
     while True:
-        city = input("Would you like to see data for Chicago, New York, or Washington?\n").strip().lower()
+        city = input("Would you like to see data for Chicago, New York City, or Washington?\n").strip().lower()
         if city in CITY_DATA:
             break
         else:
-            print("Invalid input. Please choose from Chicago, New York, or Washington.")
+            print("Invalid input. Please choose from Chicago, New York City, or Washington.")
 
     # Get user input for filter type
     while True:
@@ -54,7 +56,7 @@ def get_filters():
             else:
                 print("Invalid input. Please choose a valid day.")
 
-    print('-'*40)
+    print('-' * 40)
     return city, month, day
 
 def load_data(city, month, day):
@@ -89,6 +91,26 @@ def load_data(city, month, day):
         df = df[df['day_of_week'] == day]
 
     return df
+
+def display_filtered_data_summary(df):
+    """
+    Displays a summary of the filtered dataset, including the number of records and the time range.
+
+    Args:
+        df - Pandas DataFrame containing filtered city data
+    """
+    print('\nFiltered Data Summary:')
+    print('-' * 40)
+    
+    # Number of records
+    print(f"Number of Records: {df.shape[0]}")
+    
+    # Time range
+    start_time = df['Start Time'].min()
+    end_time = df['Start Time'].max()
+    print(f"Time Range: {start_time.strftime('%Y-%m-%d %H:%M:%S')} to {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+
+    print('-' * 40)
 
 def display_raw_data(df):
     """
@@ -125,7 +147,7 @@ def time_stats(df):
     print(f"Most Common Start Hour: {common_hour}")
 
     print(f"\nThis took {time.time() - start_time:.2f} seconds.")
-    print('-'*40)
+    print('-' * 40)
 
 # Similar statistical functions go here for station_stats, trip_duration_stats, and user_stats.
 
@@ -134,6 +156,7 @@ def main():
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
+        display_filtered_data_summary(df)  # Call the new summary function
         display_raw_data(df)
 
         time_stats(df)
